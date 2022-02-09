@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<file:config name="File_Config2" doc:name="File Config" doc:id="5549db88-108e-4ec7-8bda-9e58708f0636" />
+	<flow name="paylod-debugger-breakpointFlow" doc:id="c154d1dc-d04a-4728-be8c-6e385c57db93" >
+		<file:listener doc:name="File:orders.csv" doc:id="9790dca7-bf40-4e03-b85d-f11a736091e0" config-ref="File_Config2" directory="C:\Harsha" timeBetweenSizeCheckUnit="DAYS" outputMimeType="application/csv">
+			<scheduling-strategy >
+				<fixed-frequency />
+			</scheduling-strategy>
+			<file:matcher filenamePattern="orders1.csv" />
+		</file:listener>
+		<set-payload value="#[%dw 2.0&#10;output application/json&#10;---&#10;payload.orderId[0]]" doc:name="Set to orderId of first row" doc:id="19db388b-899c-46a5-92d3-c90330220a4c" />
+		<set-variable value='#["none"]' doc:name='Set orderId to "none"' doc:id="82ec1e02-7e75-4cbf-9c7f-2182e20ffe34" variableName="orderId"/>
+		<http:request method="GET" doc:name="Select orderId from accounts" doc:id="7ee0630d-7ecf-4e97-a1d2-cceb655bcb0b" url="http://localhost:8091/getorderId"/>
+		<logger level="INFO" doc:name="payload" doc:id="9d77b675-704e-451d-84af-446651cf9194" message="#[payload]"/>
+	</flow>
+	<flow name="paylod-debugger-breakpointFlow1" doc:id="2490df2b-d34a-4709-89c4-0f9b165bd7e7" >
+		<http:listener doc:name="Listener" doc:id="62bc7a26-d335-42bb-98f4-6282b1e96899" config-ref="HTTP_Listener_config" path="/getorderId"/>
+		<set-payload value="#[payload]" doc:name="payload" doc:id="d0803664-5836-4c80-93b8-577e41efacae" />
+	</flow>
+</mule>

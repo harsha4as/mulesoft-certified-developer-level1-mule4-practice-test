@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:validation="http://www.mulesoft.org/schema/mule/validation" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
+	<flow name="isnullFlow" doc:id="204418a7-d82f-4d08-a7a4-442f97c03f66" >
+		<http:listener doc:name="HTTP: GET /test5" doc:id="a0d85127-aafe-47e8-8ac0-f081c26910ff" config-ref="HTTP_Listener_config" path="/test5">
+		</http:listener>
+		<set-payload value='#["Before"]' doc:name='"Before"' doc:id="ff657f21-8ed1-42ec-9be2-beedee3bc05d" />
+		<validation:is-null doc:name="payload" doc:id="c3c308db-cc09-458a-a6d1-c60b899b4d27" value="#[payload]" message='#["Validation Error"]'/>
+		<set-payload value='#["After"]' doc:name='"After"' doc:id="cf446622-009c-4ddd-93b6-141c33d2a0b4" />
+	</flow>
+</mule>

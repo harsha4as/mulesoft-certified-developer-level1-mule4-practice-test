@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="lookp-functionFlow" doc:id="9e8bc954-eb02-40e4-9e9d-a9eef54d3088" >
+		<http:listener doc:name="Listener" doc:id="e796ebdc-2ab9-4ef6-847a-a8a2d3b54ac3" config-ref="HTTP_Listener_config" path="/test12"/>
+		<set-payload value='#[%dw 2.0&#10;import * from dw::core::Strings&#10;output application/xml&#10;---&#10;{&#10;    customer: {&#10;        customerFName: lookup("createCustomerObject",{FirstName: payload.customers.firstName}),&#10;        cistomerLName: lookup("createCustomerObject",{LastName: payload.customers.lastName})&#10;    }&#10;}]' doc:name="Set to XML response" doc:id="b5bf6ec9-79b9-4db7-8799-334b61ab7aa4" />
+	</flow>
+	<flow name="createCustomerObject" doc:id="802d9c72-bf5c-4223-90c2-eaa73005229b" >
+		<set-payload value='#[%dw 2.0&#10;output application/json&#10;---&#10;&#10; if (payload.FirstName == "Ram") "Ram" else if (payload.LastName == "Lakshman") "Lakshman" else ""]' doc:name="Set to customer JSON object" doc:id="a7692b1c-a4fb-4dec-bb39-38b02cbd5b94" />
+	</flow>
+</mule>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="http-request-child-flow" doc:id="e5b55015-2c71-471c-bbac-be1d731e275f" >
+		<http:listener doc:name="HTTP: GET /test10" doc:id="dadca5a5-1885-4806-93a7-37004c3a7862" config-ref="HTTP_Listener_config" path="/test10"/>
+		<set-payload value='#["Customer10"]' doc:name='"Customer10"' doc:id="c8635e0a-01a9-4ab8-a419-3c61c12d3f66" />
+		<set-variable value="1" doc:name="quantity to 1" doc:id="ca65db2a-7e4c-4c10-86e0-b39a102bc64a" variableName="quantity"/>
+		<http:request method="POST" doc:name="POST:HTTP /child1" doc:id="d4b49cfb-2741-4169-9faa-297f1b0dbf20" url="http://localhost:8091/child1"/>
+	</flow>
+	<flow name="child1" doc:id="184c0286-ff32-4fc7-8c17-8ebaf9a16a92" >
+		<http:listener doc:name="Listener" doc:id="ca063f9c-29d5-4536-8996-d01c550f2110" config-ref="HTTP_Listener_config" path="/child1"/>
+		<logger level="INFO" doc:name="Logger" doc:id="226d9e04-c5c4-4b45-96e2-1d8b24d595c5" message="#[payload]"/>
+	</flow>
+</mule>

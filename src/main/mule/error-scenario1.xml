@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:validation="http://www.mulesoft.org/schema/mule/validation" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
+	<flow name="error-scenario1Flow" doc:id="96b5a15f-98ac-45c4-bbb8-550fa21ade7c" >
+		<http:listener doc:name="HTTP: GET /" doc:id="3379cbf0-a49a-429b-9d18-8f6d188ecabb" config-ref="HTTP_Listener_config" path="/test9"/>
+		<flow-ref doc:name="private" doc:id="f36496cd-1984-4826-a893-3873fe501a23" name="private"/>
+		<set-payload value='#["Success - Main Flow"]' doc:name='"Success - Main Flow"' doc:id="21c2cb6d-4af9-49c0-bc17-476f7a043c1d" />
+		<error-handler >
+			<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="823997af-80d9-49ae-b15b-86da4796fdf0" >
+				<set-payload value='#["Error - Main Flow"]' doc:name='"Error - Main Flow"' doc:id="6c6a03f6-2cc9-407e-9165-d61440d46124" />
+			</on-error-continue>
+		</error-handler>
+	</flow>
+	<flow name="private" doc:id="c36f5e72-dc90-499a-a469-ab9f8be8dafa" >
+		<validation:is-number numberType="INTEGER" doc:name="payload" doc:id="96a39273-20e1-4c43-b4f8-76a12c5e527f" value="#[payload]" message='#["Validation Error"]'/>
+		<error-handler >
+			<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="8de676a6-0ed5-410d-8838-8e1cc1c762b4" >
+				<set-payload value='#["Error - Private Flow"]' doc:name='"Error - Private Flow"' doc:id="9fd4584d-3f68-4abe-b423-b01189e1067c" />
+			</on-error-continue>
+		</error-handler>
+	</flow>
+</mule>

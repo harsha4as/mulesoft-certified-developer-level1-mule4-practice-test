@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="getCustomer" doc:id="c626da01-66b7-4f07-b6bd-58018d327945" >
+		<http:listener doc:name="HTTP:GET /customer" doc:id="3569f093-b359-49f8-b265-060825330785" config-ref="HTTP_Listener_config" path="/test2"/>
+		<set-payload value="&lt;customers&gt;&#10;&lt;customerName&gt;Ram&lt;/customerName&gt;&#10;&lt;customerId&gt;1234&lt;/customerId&gt;&#10;&lt;/customers&gt;" doc:name="Set to XML" doc:id="bbc56ddb-eda1-447a-9bc4-da79b2374efc" />
+		<ee:transform doc:name="typeOf(payload)" doc:id="16753bdb-5e36-4069-b01b-ec1627cd0c2b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+typeOf(payload)]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

@@ -1,0 +1,28 @@
+#%RAML 1.0
+title: Sales Order Process API
+mediaType: application/json
+version: 1
+
+types:
+  OrderRequest: !include DataTypes/OrderRequestDataType.raml
+
+
+/orders:
+  post: 
+    body:
+      application/json:
+        type: OrderRequest
+        example: 
+          order:
+            sourceOrderId: '345678932'
+            source: G
+            type: ''
+            countryPlacedFrom: US
+            currency: USD
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              message: Success    
+                

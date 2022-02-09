@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+	<file:config name="File_Config1" doc:name="File Config" doc:id="0bd2469d-76a0-48b0-bdc1-b3605866b507" />
+	<flow name="json-to-csvFlow" doc:id="e680cce0-a342-4ef6-9f5b-5bf4772b89fc" >
+		<http:listener doc:name="HTTP: POST /orders" doc:id="31dd9cc8-98ba-43f8-a8a6-83ca31fe86ad" config-ref="HTTP_Listener_config" path="/test8"/>
+		<ee:transform doc:name="Add write_date" doc:id="555fde70-0915-47bb-adf7-59e603b11441" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload ++ {"write_date": now()}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<file:write doc:name="File: orders.csv" doc:id="230507a7-196f-46c1-a0ad-e77d09e835b5" config-ref="File_Config1" path="C:\Harsha\orders.csv"/>
+	</flow>
+</mule>

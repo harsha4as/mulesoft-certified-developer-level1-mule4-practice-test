@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="end-of-for-eachFlow" doc:id="78ef1a71-403a-440c-8cc4-d795d5595294" >
+		<http:listener doc:name="HTTP: GET /" doc:id="566b5fbd-85c2-4008-bbf4-cdddf617cf0f" config-ref="HTTP_Listener_config" path="/test3"/>
+		<set-payload value="#[[1,2,3,4]]" doc:name="[1,2,3,4]" doc:id="f1d0b260-95fb-4b48-a1f8-ef35a94b9b62" />
+		<foreach doc:name="For Each" doc:id="817a1e8d-c139-43f3-9c04-6b8e9f77152f" >
+			<set-payload value='#["order" ++ payload]' doc:name='"order" ++ payload' doc:id="34d5528c-21a9-4b1b-9812-3ba9b72ee6a8" />
+		</foreach>
+		<logger level="INFO" doc:name="payload" doc:id="6f90fca2-8b77-4ae7-bf9c-14bcc278c30c" message="#[payload]"/>
+	</flow>
+</mule>

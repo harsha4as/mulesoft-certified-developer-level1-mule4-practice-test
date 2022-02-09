@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="error-scenario2" doc:id="7c8dd218-3a64-40eb-9c09-08e33f5a71e7" >
+		<http:listener doc:name="HTTP: GET/" doc:id="dd218bcc-e5ee-4353-8ec9-96bcb8ba7174" config-ref="HTTP_Listener_config" path="/test14"/>
+		<set-payload value='#["Success - Begin"]' doc:name='"Success - Begin"' doc:id="010ae918-375a-48c6-befd-dd9892299951" />
+		<http:request method="GET" doc:name="Request" doc:id="8bf7e8ea-2431-4ed3-8a5d-5c77136a0d41" url="http://localhost:8091/getorderId123"/>
+		<set-payload value='#["Success - End"]' doc:name='"Success - End"' doc:id="45a0096a-19ab-4020-80f0-497d822348a3" />
+		<error-handler >
+			<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="72906384-b059-4e78-9244-c79ce59ce2c7" >
+				<set-payload value='#["Error"]' doc:name='"Error"' doc:id="64833210-ec8a-483d-b0fd-5ab81668cc86" />
+			</on-error-continue>
+		</error-handler>
+	</flow>
+</mule>

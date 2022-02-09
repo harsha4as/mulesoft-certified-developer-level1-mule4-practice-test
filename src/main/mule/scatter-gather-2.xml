@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="scatter-gather-2" doc:id="a7d70d0c-ecf3-433d-bc95-369b3e32d78b" >
+		<http:listener doc:name="HTTP: GET /" doc:id="ce06c6c5-4be8-4771-bb48-204398152787" config-ref="HTTP_Listener_config" path="/test9"/>
+		<logger level="INFO" doc:name="Logger" doc:id="d81ac0cb-06d8-4998-8f6a-ecddf31bd5a3" />
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="3a79b7a8-a6bd-4c8f-b3c0-bea54e5f8eb6" />
+		<scatter-gather doc:name="Scatter-Gather" doc:id="42f43286-9a55-4b73-b3c6-2ee5cc660dc4" >
+			<route >
+				<flow-ref doc:name="flow1" doc:id="69c44a6e-4f53-4cc5-b722-d6066ee010bf" name="flow1"/>
+			</route>
+			<route >
+				<flow-ref doc:name="flow2" doc:id="e733d02d-7065-4db0-b00b-c863807e9c76" name="flow2"/>
+			</route>
+		</scatter-gather>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="08712544-6196-44dc-9dfc-be8a916fb3dc" />
+		<logger level="INFO" doc:name="Logger" doc:id="534441b4-b068-4c6f-8afd-fab13fdb20f4" />
+	</flow>
+	<sub-flow name="flow1" doc:id="1ba7098c-2ab4-4b5d-8871-d2b8c3b7e60f" >
+		<set-payload value='#["10 Seconds"]' doc:name='"10 Seconds"' doc:id="dfa70de1-8beb-445a-9d60-f5685d67fda8" />
+	</sub-flow>
+	<sub-flow name="flow2" doc:id="8f336ecb-9d41-4e5d-8ef5-70a82fd97d99" >
+		<set-payload value='#["20 Seconds"]' doc:name="Set Payload" doc:id="4abea05a-5bb8-42f9-8b83-d8bea898811a" />
+	</sub-flow>
+</mule>

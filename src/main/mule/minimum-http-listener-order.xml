@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config2" doc:name="HTTP Listener config" doc:id="a5baef83-cf8c-4c68-a78b-cd0fa12d08ac" >
+		<http:listener-connection host="0.0.0.0" port="2000" />
+	</http:listener-config>
+	<http:listener-config name="HTTP_Listener_config3" doc:name="HTTP Listener config" doc:id="88688b15-c8c9-446f-b499-293801e13926" >
+		<http:listener-connection host="0.0.0.0" port="3000" />
+	</http:listener-config>
+	<flow name="postOrder" doc:id="9e5c7078-b6b8-435c-bcc8-2306b6a1c5d4" >
+		<http:listener doc:name="HTTP: 2000 POST /order" doc:id="60a57b59-9111-4064-ac32-806437aba0c9" config-ref="HTTP_Listener_config2" path="/order" allowedMethods="POST"/>
+		<logger level="INFO" doc:name="Logger" doc:id="d09470d2-6c78-421d-a90b-abc030336a4c" />
+	</flow>
+	<flow name="deleteOrder" doc:id="8058a9ac-b2cf-49fd-aa77-017a6afc8ed0" >
+		<http:listener doc:name="HTTP:3000 DELETE /order" doc:id="9809258e-bba8-4810-9098-d910afe3e6f6" config-ref="HTTP_Listener_config3" path="/order" allowedMethods="DELETE"/>
+		<logger level="INFO" doc:name="Logger" doc:id="a1935619-5efa-4fe7-860e-6ea6c3ed9adb" />
+	</flow>
+</mule>

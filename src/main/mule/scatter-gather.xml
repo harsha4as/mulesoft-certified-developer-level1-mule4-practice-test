@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="scatter-gatherFlow" doc:id="90f0a0fd-20d1-4952-b587-6dcb0f321793" >
+		<http:listener doc:name="Listener" doc:id="66dc2654-4428-4472-b208-9e8152c47f5c" config-ref="HTTP_Listener_config" path="/test7"/>
+		<scatter-gather doc:name="Scatter-Gather" doc:id="f81e82e8-e0a7-4600-817a-32988ecd92f4" >
+			<route >
+				<flow-ref doc:name="Orange" doc:id="f856588b-16b9-4f11-af8c-2e02b539212d" name="Orange"/>
+			</route>
+			<route >
+				<flow-ref doc:name="Pineapple" doc:id="e9263413-80dc-45b3-9c61-df240c29667b" name="Pineapple"/>
+			</route>
+		</scatter-gather>
+		<ee:transform doc:name="Java to JSON" doc:id="9e053d34-322b-4f16-a0cd-ea99fbc91cb9" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<sub-flow name="Orange" doc:id="a9a55ccd-08a1-4f7b-a377-ca6a44352498" >
+		<set-payload value='Orange' doc:name='Orange' doc:id="f6f74857-1cb0-43b7-b917-3cccea86bbf9" />
+	</sub-flow>
+	<sub-flow name="Pineapple" doc:id="d4d5ec7b-549e-487a-9e45-528a7c0529b2" >
+		<set-payload value='Pineapple' doc:name='Pineapple' doc:id="9bc0f068-c86c-40ab-a7aa-55183d29fc61" />
+	</sub-flow>
+</mule>

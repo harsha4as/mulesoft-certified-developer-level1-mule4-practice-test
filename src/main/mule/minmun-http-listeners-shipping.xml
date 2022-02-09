@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="9a31f5b8-816d-4d2e-80c9-564b25ebd21c" >
+		<http:listener-connection host="0.0.0.0" port="1000" />
+	</http:listener-config>
+	<flow name="putShipping" doc:id="0db23518-a55e-4b7d-9bf1-2d7e13476916" >
+		<http:listener doc:name="HTTP:1000 PUT /shipping" doc:id="20e40f6a-c2df-4492-bf4b-c5c037701bdd" config-ref="HTTP_Listener_config1" path="/shipping" allowedMethods="PUT"/>
+		<logger level="INFO" doc:name="Logger" doc:id="3a3e1ced-b549-446b-9911-411fc1806c1b" />
+	</flow>
+	<flow name="getShipping" doc:id="efba496a-d4b7-42f7-9056-2a05f8652f8e" >
+		<http:listener doc:name="HTTP:1000 GET /shipping" doc:id="552fc339-12b3-4621-8e6e-cfa2375a45bf" config-ref="HTTP_Listener_config1" path="/shipping" allowedMethods="GET"/>
+		<logger level="INFO" doc:name="Logger" doc:id="4bc4e1f7-a2f7-4d8e-9e03-d09bcdf03de4" />
+	</flow>
+</mule>

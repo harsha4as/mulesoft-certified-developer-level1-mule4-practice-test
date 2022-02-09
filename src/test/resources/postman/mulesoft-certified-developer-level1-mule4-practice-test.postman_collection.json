@@ -1,0 +1,483 @@
+{
+	"info": {
+		"_postman_id": "e30b7d9b-4fd7-48fc-800e-3d2d28a5fc61",
+		"name": "mulesoft-certified-developer-level1-mule4-practice-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST JSON to CSV",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderIdentifier\": \"\",\r\n    \"sourceOrderId\": \"1234\",\r\n    \"source\": \"G\",\r\n    \"type\": \"order\",\r\n    \"countryPlacedFrom\": \"US\",\r\n    \"currency\": \"USD\",\r\n    \"quantity\": 10,\r\n    \"price\": 30\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/test8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Error Scenario 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Flow Reference Child Flow",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET End Of For Each",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Is Null",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Scatter Gather",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Scatter Gather 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Type Of Payload",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET JSON to CSV",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Http Reqeust Child",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test10?product=laptop",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test10"
+					],
+					"query": [
+						{
+							"key": "product",
+							"value": "laptop"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET HTTP Not Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Http Reqeust Child2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test18?product=laptop",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test18"
+					],
+					"query": [
+						{
+							"key": "product",
+							"value": "laptop"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST soap call failure",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/test11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET lookp function",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customers\": {\r\n    \"firstName\": \"Ram\",\r\n    \"lastName\": \"Lakshman\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/test12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST 415 Error",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"order\": {\r\n        \"sourceOrderId\": \"?\",\r\n        \"source\": \"?\",\r\n        \"type\": \"?\",\r\n        \"countryPlacedFrom\": \"?\",\r\n        \"currency\": \"?\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/test14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Error Scenario 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"order\": {\r\n        \"sourceOrderId\": \"?\",\r\n        \"source\": \"?\",\r\n        \"type\": \"?\",\r\n        \"countryPlacedFrom\": \"?\",\r\n        \"currency\": \"?\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/test14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET JMS Result",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Choice Router When",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test16",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test16"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Choice Router",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Try Error",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/test17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"test17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Create Order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "Ram",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "Lakshman",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8091/api/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"api",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="choice-router-when-expressionFlow" doc:id="93386ac9-eec2-49e5-8bff-dea394041a58" >
+		<http:listener doc:name="HTTP: GET /test16" doc:id="4d9e5ece-46c2-447d-a14c-3fca446c5a77" path="/test16" config-ref="HTTP_Listener_config"/>
+		<set-payload value='#["US"]' doc:name='"US"' doc:id="315e82b7-1018-4ab8-9879-fff20bddab0c" />
+		<choice doc:name="Is Country US?" doc:id="3e5d8d19-6efd-43a3-9c9e-caa06d1753ba" >
+			<when expression="#[payload == 'US']">
+				<set-payload value='#["Domestic Shipping"]' doc:name='"Domestic Shipping"' doc:id="aa733a1d-eeb4-4334-8acd-19c3fab24939" />
+			</when>
+			<otherwise >
+				<set-payload value='#["International Shipping"]' doc:name='"International Shipping"' doc:id="201729a9-a8ac-42e6-845f-13619271e99e" />
+			</otherwise>
+		</choice>
+	</flow>
+</mule>

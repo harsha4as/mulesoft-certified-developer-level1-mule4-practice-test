@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd">
+	<wsc:config name="Web_Service_Consumer_Config" doc:name="Web Service Consumer Config" doc:id="d60ffe2d-5f07-43ba-b7aa-ea5cd3695cdb" >
+		<wsc:connection wsdlLocation="http://localhost:8095/SalesOrder?wsdl" service="SalesOrder" port="SalesOrderSOAP" address="http://localhost:8095/SalesOrder" >
+			<wsc:web-service-security actor="http://schemas.xmlsoap.org/soap/actor/next" />
+		</wsc:connection>
+	</wsc:config>
+	<flow name="soap-call-failureFlow" doc:id="61d15643-531f-406c-bf5e-5ade4482596f" >
+		<http:listener doc:name="HTTP:GET /orders" doc:id="a3a214e3-6db9-4a3a-96c4-d9ce07856ad3" config-ref="HTTP_Listener_config" path="/test11"/>
+		<wsc:consume doc:name="WSC: SalesOrder" doc:id="3b5f6955-dac4-4c8c-8715-e551bd2424fb" config-ref="Web_Service_Consumer_Config" operation="CreateOrder"/>
+	</flow>
+</mule>

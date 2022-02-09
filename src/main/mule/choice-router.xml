@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="choice-routerFlow" doc:id="2fd4de48-b40a-4923-b879-a07f41da9d68" >
+		<http:listener doc:name="HTTP: GET /" doc:id="294947a4-278f-43e5-ab75-73f291d7913f" config-ref="HTTP_Listener_config" path="/test4"/>
+		<choice doc:name="Choice" doc:id="94444132-8c14-48c4-8b76-30addeda6721" >
+			<when expression="true">
+				<logger level="INFO" doc:name='"Route1"' doc:id="a1718bd6-0d7d-40c8-b06e-370d563a5e72" message='#["Route1"]'/>
+			</when>
+			<when expression='true'>
+				<logger level="INFO" doc:name='"Route2"' doc:id="b728077c-da61-4f21-84aa-dd2f61796803" message='#["Route2"]'/>
+			</when>
+			<otherwise >
+				<logger level="INFO" doc:name='"Default"' doc:id="2f6d80b4-e382-43da-891d-3601fe0326c0" message='#["Default"]'/>
+			</otherwise>
+		</choice>
+	</flow>
+</mule>

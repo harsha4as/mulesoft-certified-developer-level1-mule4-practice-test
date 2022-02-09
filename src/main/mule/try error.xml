@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:validation="http://www.mulesoft.org/schema/mule/validation" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
+	<flow name="try_errorFlow" doc:id="6d80dde4-82af-46f8-8580-48541ae52dd6" >
+		<http:listener doc:name="Listener" doc:id="bc6f07e2-c28d-43c2-a004-0972bcf18aa7" path="/test17" config-ref="HTTP_Listener_config"/>
+		<try doc:name="Try" doc:id="9f396c65-eaec-46f8-a132-3afdd45c09aa" >
+			<validation:is-null doc:name="payload" doc:id="6e97bc87-7380-4026-9585-170e48e01de3" value="#[payload]" message='#["Validation Error"]'/>
+			<error-handler >
+				<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="232d17d3-358a-460b-9746-c0c97a599443" >
+					<set-payload value='"Error - Try Scope"' doc:name="Error - Try Scope" doc:id="ea037f9e-664d-4910-9ff4-df4a624fec72" />
+				</on-error-propagate>
+			</error-handler>
+		</try>
+		<set-payload value='"Success - main flow"' doc:name="Success - main flow" doc:id="beb1ede6-0084-459c-a2ce-9b2e69fdbef6" />
+		<error-handler >
+			<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="cd2e3fbe-b47a-4f10-879d-269035b37249" >
+				<set-payload value='"Error - main flow"' doc:name="Error - main flow" doc:id="df6e112e-758a-4320-9d84-08a177407df2" />
+			</on-error-continue>
+		</error-handler>
+	</flow>
+</mule>

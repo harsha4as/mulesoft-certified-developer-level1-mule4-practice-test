@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd">
+	<jms:config name="JMS_Config" doc:name="JMS Config" doc:id="41630746-a174-4166-b3d8-d98323af1b8d" >
+		<jms:active-mq-connection >
+			<jms:factory-configuration />
+		</jms:active-mq-connection>
+	</jms:config>
+	<flow name="jms-result" doc:id="d137238c-68f1-4e35-8970-024ac8c8c3d0" >
+		<http:listener doc:name="HTTP:GET /" doc:id="95d7a055-57e1-47f1-8cbb-bf4ab88c6221" config-ref="HTTP_Listener_config" path="/test15"/>
+		<http:request method="POST" doc:name="HTTP: POST /sales" doc:id="07112f5c-dd92-4428-8a53-0636621c59ed" url="http://localhost:8091/sales"/>
+		<jms:publish-consume doc:name="JMS: num1" doc:id="b8b78534-73f7-4dcc-bdc7-e3c388b1be35" destination="num1" config-ref="JMS_Config"/>
+		<jms:publish doc:name="JMS: num2" doc:id="9d4adc09-ea3d-4f1b-ab1d-a65931dff688" config-ref="JMS_Config" destination="num2"/>
+		<set-payload value="#[payload + 1]" doc:name="payload + 1" doc:id="d04e5b8a-612d-49a9-94ce-3068a0c0adb0" />
+	</flow>
+	<flow name="http" doc:id="d6470106-89dc-4426-86c7-4b4b714fe5fa" >
+		<http:listener doc:name="HTTP: POST /data" doc:id="d3eff6d3-1b84-4bb7-8cd2-b2fb0ca61b85" config-ref="HTTP_Listener_config" path="/sales"/>
+		<set-payload value="1" doc:name="1" doc:id="110f3f01-ff8f-42e6-a60a-98e7600efa84" />
+	</flow>
+	<flow name="jms1" doc:id="d669dd7d-e13f-4671-aff2-c482c03365de" >
+		<jms:listener doc:name="JMS: num1" doc:id="c92d96be-cd16-4e28-b97a-442bc7fc9fb5" config-ref="JMS_Config" destination="num1"/>
+		<set-payload value="#[payload + 1]" doc:name="payload + 1" doc:id="3adac961-d449-4ba0-9a7d-363eae683297" />
+	</flow>
+	<flow name="jms2" doc:id="1241ddd8-d718-4b2a-b216-09cb689e7353" >
+		<jms:listener doc:name="JMS: num2" doc:id="1998de92-7276-4123-8f7a-57785a985494" config-ref="JMS_Config" destination="num2"/>
+		<set-payload value="#[payload + 1]" doc:name="payload + 1" doc:id="14bdb25b-d837-4705-958e-88658b7b8dbf" />
+	</flow>
+</mule>
